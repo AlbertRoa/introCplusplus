@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1623212175 source:d:\user\albert\git\cpp\juegostest\src\player.cpp
+	<iostream>
+	"Player.h"
+
+1623212079 d:\user\albert\git\cpp\juegostest\include\player.h
+
+1623212279 source:d:\user\albert\git\cpp\juegostest\main.cpp
+	<iostream>
+	"Player.h"
+	"MapCell.h"
+	"GameMap.h"
+
+1619147533 d:\user\albert\git\cpp\juegostest\include\mapcell.h
+
+1623211377 source:d:\user\albert\git\cpp\juegostest\src\mapcell.cpp
+	"MapCell.h"
+
+1623212754 d:\user\albert\git\cpp\juegostest\include\gamemap.h
+	"MapCell.h"
+
+1623211404 source:d:\user\albert\git\cpp\juegostest\src\gamemap.cpp
+	<iostream>
+	"GameMap.h"
+
