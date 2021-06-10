@@ -31,11 +31,11 @@ void Player::CallInput()
     switch (UserInput)
     {
     case 'w':
-        y = y + 1;
+        y = y - 1;
         cout << "move Up" << endl;
         break;
     case 's':
-        y = y - 1;
+        y = y + 1;
         cout << "move Down" << endl;
         break;
     case 'd':
