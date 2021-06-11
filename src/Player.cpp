@@ -30,25 +30,20 @@ void Player::CallInput()
 
     switch (UserInput)
     {
-    case 'w':
+    case 'w': // move up
         y = y - 1;
-        cout << "move Up" << endl;
         break;
-    case 's':
+    case 's': // move down
         y = y + 1;
-        cout << "move Down" << endl;
         break;
-    case 'd':
+    case 'd': // move rigth
         x = x + 1;
-        cout << "move rigth" << endl;
         break;
-    case 'a':
+    case 'a': // move left
         x = x - 1;
-        cout << "move left" << endl;
         break;
 
     }
-    cout << "coordinates hero: " << x << ", " << y << endl;
 }
 //Player::~Player()
 //{

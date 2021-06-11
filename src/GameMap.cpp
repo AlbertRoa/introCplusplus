@@ -26,32 +26,72 @@ void GameMap::Draw()
 }
 
 void GameMap::SetPlayerCell(int PlayerX, int PlayerY)
-{   // condicional para colocar en cero la posiciona anterior si no esta en null
-    if (PlayerCell != NULL)
+{
+    // verificamos si la celda esta o no bloqueada, si no esta bloqueada nos movemos
+    if (cells[PlayerY][PlayerX].IsBlocked() == false)
     {
-        PlayerCell->id = 0;
-    }
-    PlayerCell = &cells[PlayerY][PlayerX];
-    PlayerCell->id = 3;
+        // condicional para colocar en cero la posiciona anterior si no esta en null
+        if (PlayerCell != NULL)
+        {
+            PlayerCell->id = 0; // cero en caracter es un caracter vacio
+        }
+        PlayerCell = &cells[PlayerY][PlayerX];
+        PlayerCell->id = 3;
 
-    //cout << "las coordenadas del jugador estan en: " << PlayerX << ", " << PlayerY;
+    }
+    else
+    {
+
+    }
 }
 
 void GameMap::LoadMapFromFile() {
     string line;
+    int row = 0;
     ifstream MapFile("Map.txt"); //intenta leer el archivo. ifstream => input
 
     if (MapFile.is_open())
     {
-        cout << "archivo cargado" << endl;
+        while (getline(MapFile, line))
+        {
+            for (int column = 0; column < line.length(); column++)
+            {
+                if (line[column] == '0')
+                    cells[row][column].id = 0; // el valor de la celda no puede ser modificado por un string, pero al id si
+                else
+                {
+                  cells[row][column].id = line[column];
+                }
+            }
+
+            row++;
+        }
     } else
     {
-        cout << "creando archivo" << endl;
         ofstream CreateMapFile("Map.txt"); // crea el archivo. ofstream => output
 
         if (CreateMapFile.is_open())
         {
-
+            for (int rows = 0; rows < 15; rows++)
+            {
+                for (int columns = 0; columns < 10; columns++)
+                {
+                    if (rows == 0 || rows == 14)
+                    {
+                        CreateMapFile << 1;
+                    }
+                    else if (rows != 0) {
+                        if (columns == 0 || columns == 9)
+                        {
+                            CreateMapFile << 1;
+                        }
+                        else {
+                            CreateMapFile << 0;
+                        }
+                    }
+                }
+                CreateMapFile << endl;
+            }
 
         } else
         {
