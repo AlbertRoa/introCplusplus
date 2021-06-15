@@ -12,8 +12,12 @@ class GameMap
         MapCell* PlayerCell;
         MapCell cells[15][10];
 
+        void DrawIntro();
+        void DrawVictory();
+        void DrawDead();
         void Draw();
-        void SetPlayerCell(int PlayerX, int PlaterY);
+        bool SetPlayerCell(int PlayerX, int PlaterY);
+        bool IsGameOver = false;
 
     protected:
         void LoadMapFromFile();

@@ -8,12 +8,13 @@ class Player
         Player();
         // virtual ~Player(); destructor
 
-        //
         void CallInput();
+        void ResetToSafePosition(); // restore last position
         int XAxis();
         int YAxis();
     protected:
         int x , y;
+        int lastX, lastY;
     private:
 };
 

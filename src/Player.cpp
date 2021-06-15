@@ -28,6 +28,8 @@ void Player::CallInput()
 
     cin >> UserInput;
 
+    lastX = x;
+    lastY = y;
     switch (UserInput)
     {
     case 'w': // move up
@@ -44,6 +46,13 @@ void Player::CallInput()
         break;
 
     }
+}
+
+void Player::ResetToSafePosition()
+{
+
+    x = lastX;
+    y = lastY;
 }
 //Player::~Player()
 //{

@@ -9,6 +9,7 @@ GameMap::GameMap()
     //ctor
     PlayerCell = NULL; // inicializa la celda del jugador en null
     LoadMapFromFile();
+    IsGameOver = false;
 
 }
 
@@ -25,23 +26,96 @@ void GameMap::Draw()
     }
 }
 
-void GameMap::SetPlayerCell(int PlayerX, int PlayerY)
+bool GameMap::SetPlayerCell(int PlayerX, int PlayerY)
 {
     // verificamos si la celda esta o no bloqueada, si no esta bloqueada nos movemos
     if (cells[PlayerY][PlayerX].IsBlocked() == false)
     {
-        // condicional para colocar en cero la posiciona anterior si no esta en null
-        if (PlayerCell != NULL)
+        if (cells[PlayerY][PlayerX].id == '$') // verifica si se encontro el tesoro
         {
-            PlayerCell->id = 0; // cero en caracter es un caracter vacio
+            DrawVictory();
+            IsGameOver = true;
+            return true;
         }
-        PlayerCell = &cells[PlayerY][PlayerX];
-        PlayerCell->id = 3;
+        else if (cells[PlayerY][PlayerX].id == 'x') // verifica si se encontro con un enemigo
+        {
+            DrawDead();
+            IsGameOver = true;
+            return true;
+        }
+        else {
+
+            // condicional para colocar en cero la posiciona anterior si no esta en null
+            if (PlayerCell != NULL)
+            {
+                PlayerCell->id = 0; // cero en caracter es un caracter vacio
+            }
+            PlayerCell = &cells[PlayerY][PlayerX];
+            PlayerCell->id = 3;
+            return true;
+        }
 
     }
     else
     {
+        return false;
+    }
+}
 
+void GameMap::DrawIntro()
+{
+    string line;
+    ifstream IntroFile("Intro.txt");
+
+    if (IntroFile.is_open())
+    {
+         while (getline(IntroFile, line))
+        {
+            cout << line << endl;
+        }
+
+        cin >> line;
+    }
+    else {
+        cout << "Fatal error, intro can not be loaded!" << endl;
+    }
+}
+
+void GameMap::DrawVictory()
+{
+    string line;
+    ifstream IntroFile("victory.txt");
+
+    if (IntroFile.is_open())
+    {
+         while (getline(IntroFile, line))
+        {
+            cout << line << endl;
+        }
+
+        cin >> line;
+    }
+    else {
+        cout << "Fatal error, intro can not be loaded!" << endl;
+    }
+}
+
+void GameMap::DrawDead()
+{
+    string line;
+    ifstream IntroFile("Dead.txt");
+
+    if (IntroFile.is_open())
+    {
+         while (getline(IntroFile, line))
+        {
+            cout << line << endl;
+        }
+
+        cin >> line;
+    }
+    else {
+        cout << "Fatal error, intro can not be loaded!" << endl;
     }
 }
 
